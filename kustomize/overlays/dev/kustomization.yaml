@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: flask-demo-dev
+
+resources:
+  - ../../base
+
+replicas:
+  - name: flask-app
+    count: 1
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: "development"
+    target:
+      kind: Deployment
+      name: flask-app
+
+commonLabels:
+  environment: dev
