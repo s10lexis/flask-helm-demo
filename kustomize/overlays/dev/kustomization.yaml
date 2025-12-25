@@ -8,7 +8,7 @@ resources:
 
 replicas:
   - name: flask-app
-    count: 2
+    count: 3
 
 patches:
   - patch: |-
